@@ -21,7 +21,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * Controller class for handling HTTP requests related to customers.
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("/customers")
@@ -30,6 +32,12 @@ public class CustomerHttpController {
 
     private final HikariDataSource pool;
 
+    /**
+     * Constructor for CustomerHttpController.
+     * Initializes the HikariDataSource based on the provided environment properties.
+     *
+     * @param env The environment containing properties needed for database connection.
+     */
     public CustomerHttpController(Environment env) {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(env.getRequiredProperty("spring.datasource.url"));
@@ -40,20 +48,35 @@ public class CustomerHttpController {
         pool = new HikariDataSource(config);
     }
 
+    /**
+     * Exception handler for ConstraintViolationException.
+     * Handles constraint violations and throws a ResponseStatusException with a BAD_REQUEST status.
+     *
+     * @param exp The ConstraintViolationException to handle.
+     * @return A message indicating a bad request.
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     public String exceptionHandler(ConstraintViolationException exp) {
         ResponseStatusException resExp = new ResponseStatusException(HttpStatus.BAD_REQUEST,
                 exp.getMessage());
         exp.initCause(resExp);
         throw resExp;
-
     }
 
+    /**
+     * PreDestroy method to close the HikariDataSource when the application is shutting down.
+     */
     @PreDestroy
     private void destroy() {
         pool.close();
     }
 
+    /**
+     * Get method for retrieving all customers.
+     *
+     * @param q The query parameter for filtering customers.
+     * @return List of CustomerTO objects.
+     */
     @GetMapping
     public List<CustomerTO> getAllCustomers(String q) {
         try (Connection connection = pool.getConnection()) {
@@ -69,6 +92,13 @@ public class CustomerHttpController {
         }
     }
 
+    /**
+     * Get method for retrieving sorted customers.
+     *
+     * @param q    The query parameter for filtering customers.
+     * @param sort The sorting parameter.
+     * @return List of CustomerTO objects.
+     */
     @GetMapping(params = {"sort"})
     public List<CustomerTO> getAllSortedCustomers(String q,
                                                   @Pattern(regexp = "^(id|first_name|last_name|contact|country),(asc|desc)$",
@@ -79,7 +109,6 @@ public class CustomerHttpController {
         List<String> colNames = List.of("id", "first_name", "last_name", "contact", "country");
 
         try (Connection connection = pool.getConnection()) {
-
             final int COLUMN_INDEX = colNames.indexOf(colName.intern());
 
             PreparedStatement stm = connection.prepareStatement("SELECT * FROM customer " +
@@ -95,6 +124,14 @@ public class CustomerHttpController {
         }
     }
 
+    /**
+     * Get method for retrieving paginated customers.
+     *
+     * @param q    The query parameter for filtering customers.
+     * @param page The page number.
+     * @param size The page size.
+     * @return List of CustomerTO objects.
+     */
     @GetMapping(params = {"page", "size"})
     public List<CustomerTO> getAllPaginatedCustomers(String q,
                                                      @Positive(message = "Page can't be zero or negative") int page,
@@ -114,6 +151,15 @@ public class CustomerHttpController {
         }
     }
 
+    /**
+     * Get method for retrieving paginated and sorted customers.
+     *
+     * @param q    The query parameter for filtering customers.
+     * @param page The page number.
+     * @param size The page size.
+     * @param sort The sorting parameter.
+     * @return List of CustomerTO objects.
+     */
     @GetMapping(params = {"page", "size", "sort"})
     public List<CustomerTO> getAllPaginatedAndSortedCustomers(String q,
                                                               @Positive(message = "Page can't be zero or negative") int page,
@@ -124,6 +170,7 @@ public class CustomerHttpController {
         String colName = splitText[0];
         String order = splitText[1];
         List<String> colNames = List.of("id", "first_name", "last_name", "contact", "country");
+
 
         try (Connection connection = pool.getConnection()) {
             final int COLUMN_INDEX = colNames.indexOf(colName.intern());
@@ -155,5 +202,4 @@ public class CustomerHttpController {
         }
         return customerList;
     }
-
 }
