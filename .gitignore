@@ -3,3 +3,8 @@
 **/.idea
 **/.vscode
 **/*.iml
+
+**/node_modules
+
+**/.parcel-cache
+**/dist
