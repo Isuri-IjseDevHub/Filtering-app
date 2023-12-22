@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+}
+
+#tbl-customers th:first-child,
+#tbl-customers td:first-child{
+    text-align: center;
+    min-width: 75px;
+}
+
+#tbl-customers th:nth-child(2),
+#tbl-customers td:nth-child(2),
+#tbl-customers th:nth-child(3),
+#tbl-customers td:nth-child(3),
+#tbl-customers th:nth-child(4),
+#tbl-customers td:nth-child(4){
+    text-align: center;
+    min-width: 150px;
+}
+
+#tbl-customers th:last-child,
+#tbl-customers td:last-child{
+    text-align: center;
+    min-width: 200px;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid limegreen;
+    border-color: limegreen transparent limegreen transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+html[data-bs-theme="dark"] th.col-hover{
+    background-color: rgb(63, 63, 63) !important;
+}
+
+html[data-bs-theme="dark"] td.col-hover{
+    background-color: rgba(63, 63, 63,0.2) !important;
+}
+
+html[data-bs-theme="light"] th.col-hover{
+    background-color: rgb(240, 240, 240) !important;
+}
+
+html[data-bs-theme="light"] td.col-hover{
+    background-color: rgba(235, 235, 235, 0.3) !important;
+}
+
+#tbl-customers{
+    cursor: pointer;
+}
+
+#tbl-customers th {
+    user-select: none;
+}
+
+.sorted {
+    position: relative;
+}
+
+.sorted.order-down::after{
+    content: "";
+    position: absolute;
+    display: block;
+    border-top: 5px solid limegreen;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sorted.order-up::after{
+    content: "";
+    position: absolute;
+    display: block;
+    border-bottom: 5px solid limegreen;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.mode {
+    transition: all 500ms;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+}
+
+html[data-bs-theme="dark"] .mode:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+html[data-bs-theme="light"] .mode:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}

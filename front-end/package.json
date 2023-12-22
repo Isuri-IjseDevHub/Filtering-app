@@ -1,8 +1,8 @@
 {
   "name": "front-end",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "frontend-filtering app",
+  "source": "src/index.html",
   "scripts": {
     "start": "parcel --no-cache",
     "build": "rm -rf dist && parcel build"

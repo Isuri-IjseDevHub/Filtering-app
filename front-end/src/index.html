@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtering App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+    <header class="p-2 border-bottom d-flex justify-content-between align-items-center">
+        <h2><i class="bi bi-sort-down-alt me-3 text-info"></i>Filtering App</h2>
+        <i id="btn-mode" class="mode bi bi-moon-fill"></i>
+    </header>
+    <main class="p-2">
+        <input id="txt-search" class="form-control text-center" type="text"
+        placeholder="Enter something to search">
+        <div class="mt-2 table-responsive">
+            <table id="tbl-customers" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="sorted order-down">ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>CONTACT</th>
+                        <th>COUNTRY</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="loader" class="d-flex justify-content-center">
+            <div class="lds-dual-ring"></div>
+        </div>
+    </main>
+</body>
+
+</html>
