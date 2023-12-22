@@ -1,10 +1,12 @@
+/* Apply box-sizing and font-family to all elements */
 * {
     box-sizing: border-box;
     font-family: Ubuntu, sans-serif;
 }
 
+/* Styling for customer table header and data cells */
 #tbl-customers th:first-child,
-#tbl-customers td:first-child{
+#tbl-customers td:first-child {
     text-align: center;
     min-width: 75px;
 }
@@ -14,23 +16,25 @@
 #tbl-customers th:nth-child(3),
 #tbl-customers td:nth-child(3),
 #tbl-customers th:nth-child(4),
-#tbl-customers td:nth-child(4){
+#tbl-customers td:nth-child(4) {
     text-align: center;
     min-width: 150px;
 }
 
 #tbl-customers th:last-child,
-#tbl-customers td:last-child{
+#tbl-customers td:last-child {
     text-align: center;
     min-width: 200px;
 }
 
+/* Loading spinner styles */
 .lds-dual-ring {
     display: inline-block;
     width: 80px;
     height: 80px;
-  }
-  .lds-dual-ring:after {
+}
+
+.lds-dual-ring:after {
     content: " ";
     display: block;
     width: 64px;
@@ -40,33 +44,37 @@
     border: 6px solid limegreen;
     border-color: limegreen transparent limegreen transparent;
     animation: lds-dual-ring 1.2s linear infinite;
-  }
-  @keyframes lds-dual-ring {
+}
+
+@keyframes lds-dual-ring {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
-html[data-bs-theme="dark"] th.col-hover{
+/* Styles for dark theme hover effects */
+html[data-bs-theme="dark"] th.col-hover {
     background-color: rgb(63, 63, 63) !important;
 }
 
-html[data-bs-theme="dark"] td.col-hover{
-    background-color: rgba(63, 63, 63,0.2) !important;
+html[data-bs-theme="dark"] td.col-hover {
+    background-color: rgba(63, 63, 63, 0.2) !important;
 }
 
-html[data-bs-theme="light"] th.col-hover{
+/* Styles for light theme hover effects */
+html[data-bs-theme="light"] th.col-hover {
     background-color: rgb(240, 240, 240) !important;
 }
 
-html[data-bs-theme="light"] td.col-hover{
+html[data-bs-theme="light"] td.col-hover {
     background-color: rgba(235, 235, 235, 0.3) !important;
 }
 
-#tbl-customers{
+/* Cursor pointer and other styles for the customer table */
+#tbl-customers {
     cursor: pointer;
 }
 
@@ -74,11 +82,12 @@ html[data-bs-theme="light"] td.col-hover{
     user-select: none;
 }
 
+/* Styles for sorting indicator */
 .sorted {
     position: relative;
 }
 
-.sorted.order-down::after{
+.sorted.order-down::after {
     content: "";
     position: absolute;
     display: block;
@@ -90,7 +99,7 @@ html[data-bs-theme="light"] td.col-hover{
     transform: translateY(-50%);
 }
 
-.sorted.order-up::after{
+.sorted.order-up::after {
     content: "";
     position: absolute;
     display: block;
@@ -102,6 +111,7 @@ html[data-bs-theme="light"] td.col-hover{
     transform: translateY(-50%);
 }
 
+/* Styles for dark/light mode toggle button */
 .mode {
     transition: all 500ms;
     padding: 10px;
